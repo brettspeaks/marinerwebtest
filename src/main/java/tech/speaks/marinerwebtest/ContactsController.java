@@ -4,6 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The rest controller for the contacts api. Supports select, insert, update, and delete. If this were real life,
+ * it's probably not the best idea to serve all contacts on a get to /api/contacts. The url structure is as follows:
+ *
+ * GET /api/contacts
+ * GET /api/contacts/{id}
+ * POST /api/contacts
+ * PUT /api/contacts/{id}
+ * DELETE /api/contacts/{id}
+ *
+ * All post and put data should be sent as raw json and is then serialized to the Contact object.
+ */
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/api/contacts")
@@ -49,7 +61,7 @@ public class ContactsController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteContact(@PathVariable Integer id){
+    void deleteContact(@PathVariable Integer id){
         if (id != null) {
             contactRepository.delete(id);
         }
