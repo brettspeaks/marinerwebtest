@@ -39,11 +39,12 @@ public class ContactsController {
     Contact updateContact(@PathVariable Integer id, @RequestBody Contact contact){
         Contact contactToUpdate = contactRepository.findOne(id);
 
-        contactToUpdate.setFirstName(contact.getFirstName());
-        contactToUpdate.setLastName(contact.getLastName());
-        contactToUpdate.setEmail(contact.getEmail());
-        contactToUpdate.setPhoneNumber(contact.getPhoneNumber());
-
+        if(id != null && contactToUpdate != null) {
+            contactToUpdate.setFirstName(contact.getFirstName());
+            contactToUpdate.setLastName(contact.getLastName());
+            contactToUpdate.setEmail(contact.getEmail());
+            contactToUpdate.setPhoneNumber(contact.getPhoneNumber());
+        }
         return contactRepository.save(contactToUpdate);
     }
 
