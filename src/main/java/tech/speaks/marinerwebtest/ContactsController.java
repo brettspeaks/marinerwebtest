@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @EnableAutoConfiguration
+@CrossOrigin
 @RequestMapping("/api/contacts")
 public class ContactsController {
 
