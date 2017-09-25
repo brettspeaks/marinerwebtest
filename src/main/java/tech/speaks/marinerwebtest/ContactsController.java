@@ -1,5 +1,6 @@
 package tech.speaks.marinerwebtest;
 
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
@@ -40,23 +41,25 @@ public class ContactsController {
     }
 
     @PostMapping
-    Contact createNewContact(@RequestBody Contact contact){
+    Contact createNewContact(@RequestBody ContactData contactData){
+        Contact newContact = contactData.getContact();
 
-        if (contact != null) {
-            contactRepository.save(contact);
+        if (newContact != null) {
+            contactRepository.save(newContact);
         }
-        return contact;
+        return newContact;
     }
 
     @PutMapping("/{id}")
-    Contact updateContact(@PathVariable Integer id, @RequestBody Contact contact){
+    Contact updateContact(@PathVariable Integer id, @RequestBody ContactData contactData){
         Contact contactToUpdate = contactRepository.findOne(id);
+        Contact newContact = contactData.getContact();
 
         if(id != null && contactToUpdate != null) {
-            contactToUpdate.setFirstName(contact.getFirstName());
-            contactToUpdate.setLastName(contact.getLastName());
-            contactToUpdate.setEmail(contact.getEmail());
-            contactToUpdate.setPhoneNumber(contact.getPhoneNumber());
+            contactToUpdate.setFirstName(newContact.getFirstName());
+            contactToUpdate.setLastName(newContact.getLastName());
+            contactToUpdate.setEmail(newContact.getEmail());
+            contactToUpdate.setPhoneNumber(newContact.getPhoneNumber());
         }
         return contactRepository.save(contactToUpdate);
     }
