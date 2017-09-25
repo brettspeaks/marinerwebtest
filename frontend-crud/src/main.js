@@ -6,6 +6,9 @@ Vue.use(VueRouter);
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 import App from './App.vue'
 
 const AllContacts = require('./assets/js/components/all-contacts.vue');

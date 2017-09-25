@@ -12,26 +12,48 @@
                 <input type="text" class="form-control" disabled v-model="contact.id" id="contact_id">
             </div>
 
-            <div class="form-group">
-                <label name="contact_first_name">First Name</label>
-                <input type="text" class="form-control" v-model="contact.firstName" id="contact_first_name" required>
+            <div class="form-group" :class="{'has-error': errors.has('contact_first_name') }">
+                <label class="control-label" for="contact_first_name">First Name</label>
+                <input type="text"
+                       class="form-control"
+                       v-model="contact.firstName"
+                       v-validate="'required'"
+                       name="contact_first_name"
+                >
+                <p class="text-danger" v-if="errors.has('contact_first_name')">{{ errors.first('contact_first_name') }}</p>
             </div>
 
-            <div class="form-group">
-                <label name="contact_last_name">Last Name</label>
-                <input type="text" class="form-control" v-model="contact.lastName" id="contact_last_name" required>
+            <div class="form-group" :class="{'has-error': errors.has('contact_last_name') }">
+                <label class="control-label" for="contact_last_name">Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       v-model="contact.lastName"
+                       v-validate="'required'"
+                       name="contact_last_name"
+                >
+                <p class="text-danger" v-if="errors.has('contact_last_name')">{{ errors.first('contact_last_name') }}</p>
             </div>
 
-
-            <div class="form-group">
-                <label name="contact_email">Email</label>
-                <input type="email" class="form-control" v-model="contact.email" id="contact_email" required>
+            <div class="form-group" :class="{'has-error': errors.has('contact_email') }">
+                <label class="control-label" for="contact_email">Email</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        v-model="contact.email"
+                        v-validate="'required|email'"
+                        name="contact_email"
+                >
+                <p class="text-danger" v-if="errors.has('contact_email')">{{ errors.first('contact_email') }}</p>
             </div>
 
-
-            <div class="form-group">
-                <label name="contact_phone">Phone</label>
-                <input type="tel" class="form-control" v-model="contact.phoneNumber" id="contact_phone" required>
+            <div class="form-group" :class="{'has-error': errors.has('contact_phone') }">
+                <label class="control-label" for="contact_phone">Phone</label>
+                <input type="tel"
+                       class="form-control"
+                       v-model="contact.phoneNumber"
+                       name="contact_phone"
+                >
+                <p class="text-danger" v-if="errors.has('contact_email')">{{ errors.first('contact_phone') }}</p>
             </div>
 
             <div class="form-group">
@@ -78,22 +100,30 @@
             editContact: function()
             {
                 // Validation here.
-
-                const putUrl = 'http://localhost:8080/api/contacts/' + this.$route.params.id;
-
-                axios.put(putUrl, { data: this.contact})
-                    .then(response => {
-                        this.notifications.push({
-                            type: 'success',
-                            message: 'Contact updated successfully!'
-                        })
+                if(this.errors.any()){
+                    this.notifications.push({
+                        type: 'error',
+                        message: 'Unable to update contact. Fix form errors and submit again.'
                     })
-                    .catch(e => {
-                        this.notifications.push({
-                            type: 'error',
-                            message: 'Error updating contact.'
+                }
+                else{
+                    const putUrl = 'http://localhost:8080/api/contacts/' + this.$route.params.id;
+
+                    axios.put(putUrl, { data: this.contact})
+                        .then(response => {
+                            this.notifications.push({
+                                type: 'success',
+                                message: 'Contact updated successfully!'
+                            })
                         })
-                    });
+                        .catch(e => {
+                            this.notifications.push({
+                                type: 'error',
+                                message: 'Error updating contact.'
+                            })
+                        });
+                }
+
             }
         },
 

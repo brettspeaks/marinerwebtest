@@ -46,7 +46,6 @@
                 contacts: [],
                 originalContacts: [],
                 contactSearch: '',
-                errors: []
             }
         },
 
