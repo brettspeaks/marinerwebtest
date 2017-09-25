@@ -21,7 +21,7 @@ Spring boot should be running at `localhost:8080/api/contacts`
 
 # Data Persistence
 
-Spring boot is utilizing an in memory H2 database. You can that things are being save there by using the H2 console at
+Spring boot is utilizing an in memory H2 database. You can verify that things are being save there by using the H2 console at
 `localhost:8080/console`. Make sure that your JDBC url is set to `jdbc:h2:mem:testdb` username: sa pass: <blank>.
 The app does prepopulate some test data on startup to ease with testing.
 
