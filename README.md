@@ -1,4 +1,4 @@
-#Vue Crud Contacts Manager Example Application
+# Vue Crud Contacts Manager Example Application
 This application is an example build of creating CRUD pages using vue and accessing data via a spring boot api.
 
 # Install frontend via npm.
