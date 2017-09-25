@@ -9,6 +9,11 @@ Vue.use(VueResource);
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
+import lodash from 'lodash';
+import VueLodash from 'vue-lodash';
+
+Vue.use(VueLodash, lodash)
+
 import App from './App.vue'
 
 const AllContacts = require('./assets/js/components/all-contacts.vue');
