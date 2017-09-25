@@ -25,9 +25,9 @@ public class ContactLoader implements ApplicationListener<ContextRefreshedEvent>
         contactRepository.save(contact);
 
         contact = new Contact();
-        contact.setFirstName("Tanner");
-        contact.setLastName("Hutton");
-        contact.setEmail("th@gmail.com");
+        contact.setFirstName("Tony");
+        contact.setLastName("Stark");
+        contact.setEmail("ts@gmail.com");
         contact.setPhoneNumber("123-123-1234");
         contactRepository.save(contact);
 
