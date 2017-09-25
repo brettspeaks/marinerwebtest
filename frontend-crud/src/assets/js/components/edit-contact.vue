@@ -118,7 +118,7 @@
                         })
                         .catch(e => {
                             this.notifications.push({
-                                type: 'error',
+                                type: 'danger',
                                 message: 'Error updating contact.'
                             })
                         });

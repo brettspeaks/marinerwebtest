@@ -81,7 +81,7 @@
                 // Validation here.
                 if(this.errors.any()){
                     this.notifications.push({
-                        type: 'error',
+                        type: 'danger',
                         message: 'Please correct form errors and submit again.'
                     })
                 }
@@ -91,7 +91,7 @@
                     }).then(reponse => {
                         this.notifications.push({ type: 'success', message: 'Contact created!'})
                     }).catch(e => {
-                        this.notifications.push({ type: 'error', message: 'There was an error! Contact not created.'})
+                        this.notifications.push({ type: 'danger', message: 'There was an error! Contact not created.'})
                     });
                 }
             }
