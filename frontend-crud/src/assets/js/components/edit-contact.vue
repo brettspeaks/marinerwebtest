@@ -51,9 +51,10 @@
                 <input type="tel"
                        class="form-control"
                        v-model="contact.phoneNumber"
+                       v-validate="{rules: { regex: /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/ } }"
                        name="contact_phone"
                 >
-                <p class="text-danger" v-if="errors.has('contact_email')">{{ errors.first('contact_phone') }}</p>
+                <p class="text-danger" v-if="errors.has('contact_phone')">{{ errors.first('contact_phone') }}</p>
             </div>
 
             <div class="form-group">
